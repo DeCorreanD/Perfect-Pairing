@@ -1,4 +1,4 @@
-import { signOut } from '../utils/auth';
+import { Button } from 'bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -14,11 +14,9 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
-        Sign Out
-      </button>
+      <h1>{user.displayName}! </h1>
+      <p>Perfect Pairing provides an easy way to find local babysitting jobs with parents in your community. You don’t have to weed through job boards, instead, parents will request you.</p>
+      <Button> </Button>
     </div>
   );
 }
