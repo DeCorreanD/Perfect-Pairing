@@ -2,8 +2,8 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getSitters = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/sitters.json`, {
+const getUsers = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -20,8 +20,26 @@ const getSitters = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleSitter = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/sitters/${firebaseKey}.json`, {
+const getSitter = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="isParent"&equalTo=false`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -32,8 +50,8 @@ const getSingleSitter = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createSitter = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/sitters.json`, {
+const createUser = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -45,8 +63,8 @@ const createSitter = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateSitter = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/sitters/${payload.firebaseKey}.json`, {
+const updateUser = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -58,8 +76,8 @@ const updateSitter = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteSitter = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/sitters/${firebaseKey}.json`, {
+const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -70,9 +88,10 @@ const deleteSitter = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 export {
-  deleteSitter,
-  getSingleSitter,
-  getSitters,
-  createSitter,
-  updateSitter,
+  deleteUser,
+  getSingleUser,
+  getUsers,
+  createUser,
+  updateUser,
+  getSitter,
 };
