@@ -2,7 +2,7 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getSitters = () => new Promise((resolve, reject) => {
+const getUsers = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json`, {
     method: 'GET',
     headers: {
@@ -20,7 +20,7 @@ const getSitters = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleSitter = (firebaseKey) => new Promise((resolve, reject) => {
+const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
@@ -32,7 +32,7 @@ const getSingleSitter = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createSitter = (payload) => new Promise((resolve, reject) => {
+const createUser = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json`, {
     method: 'POST',
     headers: {
@@ -45,7 +45,7 @@ const createSitter = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateSitter = (payload) => new Promise((resolve, reject) => {
+const updateUser = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
@@ -58,7 +58,7 @@ const updateSitter = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteSitter = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
@@ -70,9 +70,9 @@ const deleteSitter = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 export {
-  deleteSitter,
-  getSingleSitter,
-  getSitters,
-  createSitter,
-  updateSitter,
+  deleteUser,
+  getSingleUser,
+  getUsers,
+  createUser,
+  updateUser,
 };
