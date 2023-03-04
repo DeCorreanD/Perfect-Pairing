@@ -32,7 +32,7 @@ export default function SearchBar() {
 
   return (
     <Form className="searchbar" onSubmit={handleSubmit}>
-      <FormControl type="text" placeholder="Search For Perfect Pairing" onChange={handleChange} value={searchBar} style={{ width: '400px' }} />
+      <FormControl type="text" placeholder="Search For Perfect Pairing" onChange={handleChange} value={searchBar} style={{ width: '225px' }} />
     </Form>
   );
   // return statement declares what will be rendered in UI
