@@ -1,4 +1,4 @@
-import { Button } from 'bootstrap';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -16,7 +16,7 @@ function Home() {
     >
       <h1>{user.displayName}! </h1>
       <p>Perfect Pairing provides an easy way to find local babysitting jobs with parents in your community. You don’t have to weed through job boards, instead, parents will request you.</p>
-      <Button> </Button>
+      <Button> Join The Family</Button>
     </div>
   );
 }
