@@ -1,6 +1,6 @@
-import { Button } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getSitter } from '../api/usersData';
 import UserCard from '../components/userCard';
@@ -10,7 +10,7 @@ function Home() {
 
   const { user } = useAuth();
   const getAllSitter = () => {
-    getSitter().then(setSitters);
+    getSitter(user.uid).then(setSitters);
   };
   useEffect(() => {
     getAllSitter();
@@ -19,7 +19,7 @@ function Home() {
   return (
     <>
       <div
-        className="text-center d-flex flex-column justify-content-center align-content-center"
+        className="text-center my-4"
         style={{
           height: '90vh',
           padding: '30px',
@@ -32,7 +32,7 @@ function Home() {
         <Link href="/users/new" passHref>
           <Button> Join The Family</Button>
         </Link>
-        <div className="d-flex flex-wrap">
+        <div className="">
           {sitters.map((sitter) => (
             <UserCard
               key={sitter.firebaseKey}
