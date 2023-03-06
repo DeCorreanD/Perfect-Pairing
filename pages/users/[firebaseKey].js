@@ -10,10 +10,10 @@ export default function ViewUser() {
   const { userfirebaseKey } = router.query;
 
   useEffect(() => {
-    getSitter(userfirebaseKey).then((userData) => {
-      setUserInfo(userData);
+    getSitter(userfirebaseKey).then(() => {
+      setUserInfo(userInfo);
     });
-  }, [userfirebaseKey]);
+  });
 
   return (
     <div className="mt-5 d-flex flex-wrap">
