@@ -19,16 +19,17 @@ const initialState = {
 export default function UserForm({ obj }) {
   const [formInfo, setFormInfo] = useState({ ...initialState, uid: obj.uid });
   const router = useRouter();
-  const { uid } = useRouter();
+  const { setUser, uid } = useRouter();
   useEffect(() => {
     if (obj.firebaseKey) setFormInfo(obj);
   }, [obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const newValue = name === 'isParent' ? e.target.checked : value;
     setFormInfo((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
@@ -42,7 +43,10 @@ export default function UserForm({ obj }) {
       createUser(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateUser(patchPayload).then(() => {
-          getUsers(uid);
+          getUsers(uid).then((userData) => {
+            setUser(userData);
+            router.push('/');
+          });
         });
       });
     }
