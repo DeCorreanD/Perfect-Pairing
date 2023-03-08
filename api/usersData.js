@@ -2,7 +2,7 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getUsers = (uid) => new Promise((resolve, reject) => {
+const getUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
@@ -90,7 +90,7 @@ const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
 export {
   deleteUser,
   getSingleUser,
-  getUsers,
+  getUser,
   createUser,
   updateUser,
   getSitter,

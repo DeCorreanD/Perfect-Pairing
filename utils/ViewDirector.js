@@ -13,10 +13,10 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return <Loading />;
   }
 
-  if (user === 'NO USER') {
-    return <UserForm user={user} />;
+  if (user.firstLogin) {
+    return <UserForm obj={user} />;
   }
-
+  console.warn(user, 'ViewDirector');
   // what the user should see if they are logged in
   if (user) {
     return (
