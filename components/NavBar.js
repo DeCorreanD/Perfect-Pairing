@@ -2,9 +2,9 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  Navbar, Container, Nav, Button,
+  Navbar, Container, Nav,
 } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+
 import SearchBar from './Searchbar';
 
 export default function NavBar() {
@@ -25,9 +25,9 @@ export default function NavBar() {
               <Nav.Link>Top Sitters</Nav.Link>
             </Link>
             <SearchBar />
-            <Button variant="danger" onClick={signOut}>
-              Sign Out
-            </Button>
+            <Link passHref href="/profile">
+              <Nav.Link>Profile</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

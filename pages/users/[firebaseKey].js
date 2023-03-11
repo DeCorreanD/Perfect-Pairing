@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Button } from 'react-bootstrap';
 import viewUserInfo from '../../api/mergeData';
 
 export default function ViewUser() {
@@ -18,14 +19,23 @@ export default function ViewUser() {
         <img src={userInfo.image} alt={userInfo.name} style={{ width: '300px' }} />
       </div>
       <div className="text-black ms-5 details">
-        <h5>
-          {userInfo.name}
-        </h5>
+        <h5>{userInfo.name}</h5>
         <p>{userInfo.description}</p>
         <p> {userInfo.email}</p>
         <p>{userInfo.phone}</p>
         <p>{userInfo.location}</p>
 
+        {userInfo.isParent ? (
+          <div>
+            {/* show Sitter-specific Information */}
+            <p> Sitter Stick Together</p>
+          </div>
+        ) : (
+          <div>
+            {/* show Parent-specific Information */}
+            <Button> Make A Perfect Pairing </Button>
+          </div>
+        )}
       </div>
     </div>
   );

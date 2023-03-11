@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
@@ -27,6 +28,7 @@ function Home() {
           margin: '0 auto',
         }}
       >
+
         <h1>{user.displayName}! </h1>
         <p>Perfect Pairing provides an easy way to find local babysitting jobs with parents in your community. You don’t have to weed through job boards, instead, parents will request you.</p>
         <Link href="/users/new" passHref>
