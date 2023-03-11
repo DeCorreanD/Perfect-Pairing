@@ -45,9 +45,6 @@ export default function UserProfile() {
             </Link>
           </div>
         )}
-        {/* <Link href={`/users/edit/${userObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
-        </Link> */}
         <Button variant="outline-danger" onClick={signOut}>
           {' '}
           Sign Out
