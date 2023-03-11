@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { getUser } from '../../api/usersData';
+import { getUserLogin } from '../../api/usersData';
 import { firebase } from '../client';
 
 const AuthContext = createContext();
@@ -24,7 +24,7 @@ const AuthProvider = (props) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (fbUser) => {
       if (fbUser) {
-        await getUser(fbUser.uid).then(async (response) => {
+        await getUserLogin(fbUser.uid).then(async (response) => {
           if (Object.keys(response).length === 0) {
             setUser({
               firstLogin: true,
