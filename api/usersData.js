@@ -20,6 +20,24 @@ const getUser = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getUserLogin = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const getSitter = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="isParent"&equalTo=false`, {
     method: 'GET',
@@ -94,4 +112,5 @@ export {
   createUser,
   updateUser,
   getSitter,
+  getUserLogin,
 };
