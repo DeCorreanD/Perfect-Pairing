@@ -4,15 +4,17 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
 import viewUserInfo from '../../api/mergeData';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewUser() {
   const [userInfo, setUserInfo] = useState({});
+  const { user } = useAuth();
   const router = useRouter();
   const { firebaseKey } = router.query;
 
   useEffect(() => {
     viewUserInfo(firebaseKey).then(setUserInfo);
-  }, [firebaseKey]);
+  }, [user, firebaseKey]);
   return (
     <div className="mt-5 d-flex flex-wrap">
       <div className="d-flex flex-column">
