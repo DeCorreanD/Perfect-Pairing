@@ -21,15 +21,18 @@ function UserCard({ userObj, onUpdate }) {
         <Card.Text>{userObj.phone}</Card.Text>
         <Card.Text>{userObj.location}</Card.Text>
         <Link href={`/users/${userObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">
+          <Button variant="outline-primary" className="m-2">
             VIEW
           </Button>
         </Link>
         <Link href={`/users/edit/${userObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button variant="outline-info">EDIT</Button>
         </Link>
         {/* DYNAMIC LINK TO EDIT THE USER DETAILS  */}
-        <Button variant="danger" onClick={deleteThisSitter} className="m-2"> Delete</Button>
+        <Button variant="outline-danger" onClick={deleteThisSitter} className="m-2">
+          {' '}
+          Delete
+        </Button>
       </Card.Body>
     </Card>
   );

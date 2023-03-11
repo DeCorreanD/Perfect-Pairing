@@ -28,19 +28,14 @@ function Home() {
           margin: '0 auto',
         }}
       >
-
         <h1>{user.displayName}! </h1>
         <p>Perfect Pairing provides an easy way to find local babysitting jobs with parents in your community. You don’t have to weed through job boards, instead, parents will request you.</p>
         <Link href="/users/new" passHref>
-          <Button> Join The Family</Button>
+          <Button variant="outline-primary"> Join The Family</Button>
         </Link>
         <div className="">
           {sitters.map((sitter) => (
-            <UserCard
-              key={sitter.firebaseKey}
-              userObj={sitter}
-              onUpdate={getAllSitter}
-            />
+            <UserCard key={sitter.firebaseKey} userObj={sitter} onUpdate={getAllSitter} />
           ))}
         </div>
       </div>
