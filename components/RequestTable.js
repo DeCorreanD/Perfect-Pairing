@@ -6,9 +6,9 @@ function RequestTable() {
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>User Image</th>
+          <th>User Information</th>
+          <th>Accept/Decline</th>
         </tr>
       </thead>
       <tbody>
