@@ -33,7 +33,7 @@ export default function ViewUser() {
         ) : (
           <div>
             {/* show Parent-specific Information */}
-            <Button> Make A Perfect Pairing </Button>
+            <Button variant="outline-primary"> Make A Perfect Pairing </Button>
           </div>
         )}
       </div>
