@@ -12,7 +12,7 @@ const getUser = (uid) => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        resolve(Object.values(data));
+        resolve(Object.values(data)[0]);
       } else {
         resolve([]);
       }
