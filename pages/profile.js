@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
 import { signOut } from '../utils/auth';
 import { getUser } from '../api/usersData';
@@ -31,16 +30,11 @@ export default function UserProfile() {
           <div>
             {/* show Parent-specific Information */}
             <h2>Parent</h2>
-            <h2>Bookings[]</h2>
-            <h2>Task-List</h2>
           </div>
         ) : (
           <div>
             {/* show Sitter-specific Information */}
             <h2>Sitter</h2>
-            <Link href="/requests/newRequest" passHref>
-              <Button variant="outline-info">Requests</Button>
-            </Link>
           </div>
         )}
         <Button variant="outline-danger" onClick={signOut}>
