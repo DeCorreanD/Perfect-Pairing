@@ -21,8 +21,8 @@ export default function NavBar() {
             <Link passHref href="/">
               <Nav.Link>Babysitters</Nav.Link>
             </Link>
-            <Link passHref href="/users/edit">
-              <Nav.Link>Top Sitters</Nav.Link>
+            <Link passHref href="/tasklists/new">
+              <Nav.Link>Create Tasklist</Nav.Link>
             </Link>
             <Link passHref href="/bookings/new">
               <Nav.Link>Create Booking</Nav.Link>

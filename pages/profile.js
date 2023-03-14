@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-// import Link from 'next/link';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
 import { signOut } from '../utils/auth';
@@ -53,8 +51,3 @@ export default function UserProfile() {
     </div>
   );
 }
-UserProfile.propTypes = {
-  userObj: PropTypes.shape({
-    firebaseKey: PropTypes.string,
-  }).isRequired,
-};

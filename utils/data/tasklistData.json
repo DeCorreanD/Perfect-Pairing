@@ -10,8 +10,6 @@
     "lunch": "",
     "image": "",
     "details": "",
-    "bookingId": "",
-    "parent_id": "",
-    "sitter_id":""
+    "booking_id": ""
   }
 }
