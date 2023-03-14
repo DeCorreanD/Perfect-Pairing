@@ -8,6 +8,7 @@
     "location": "Nashville",
     "uid": "",
     "isParent": false,
+    "favorite": true,
     "image": "https://picsum.photos/id/237/536/354"
   },
   "-NPKUva4z-sHyOrMONch": {
@@ -19,6 +20,7 @@
     "location": "Nashville",
     "uid": "",
     "isParent": false,
+    "favorite": true,
     "image": "https://picsum.photos/id/237/536/354"
   },
   "-NPKUva8Rrpf-PsaUizj": {
@@ -30,6 +32,7 @@
     "location": "Nashville",
     "uid": "",
     "isParent": false,
+    "favorite": false,
     "image": "https://picsum.photos/id/237/536/354"
   },
   "-NPKUvaB4Ic_ysGoQXLw": {
@@ -41,6 +44,7 @@
     "location": "Nashville",
     "uid": "",
     "isParent": false,
+    "favorite": false,
     "image": "https://picsum.photos/id/237/536/354"
   }
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { createUser, updateUser } from '../../api/usersData';
+import { createUser, getUserLogin, updateUser } from '../../api/usersData';
 
 const initialState = {
   name: '',
@@ -19,6 +19,7 @@ const initialState = {
 export default function UserForm({ obj }) {
   const [formInfo, setFormInfo] = useState({ ...initialState, uid: obj.uid });
   const router = useRouter();
+  const { user } = useRouter();
   useEffect(() => {
     if (obj.firebaseKey) setFormInfo(obj);
   }, [obj]);
@@ -40,7 +41,9 @@ export default function UserForm({ obj }) {
     } else {
       createUser(formInfo).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateUser(patchPayload).then(() => router.push('/'));
+        updateUser(patchPayload).then(() => {
+          getUserLogin(user);
+        });
       });
     }
   };

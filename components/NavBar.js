@@ -24,6 +24,9 @@ export default function NavBar() {
             <Link passHref href="/users/edit">
               <Nav.Link>Top Sitters</Nav.Link>
             </Link>
+            <Link passHref href="/bookings/new">
+              <Nav.Link>Create Booking</Nav.Link>
+            </Link>
             <SearchBar />
             <Link passHref href="/profile">
               <Nav.Link>Profile</Nav.Link>
