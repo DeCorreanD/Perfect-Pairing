@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-import FloatingLabel, { Button, Form } from 'react-bootstrap';
+import { FloatingLabel, Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { createTaskList, updateTaskList } from '../../api/tasklistData';
+import { getBooking } from '../../api/bookingData';
 
 const initialState = {
   breakfast: '',
@@ -16,98 +17,126 @@ const initialState = {
   details: '',
 };
 
-export default function TasklistForm({ obj }) {
-  const [formData, setFormData] = useState({
-    ...initialState,
-  });
+export default function TasklistForm({ tasklistObj }) {
+  const [formData, setFormData] = useState(initialState);
+  const [bookings, setBookings] = useState([]);
   const router = useRouter();
   useEffect(() => {
-    if (obj.firebaseKey) setFormData(obj);
-  }, [obj]);
+    getBooking().then(setBookings);
+    if (tasklistObj.firebaseKey) setFormData(tasklistObj);
+  }, [tasklistObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const newValues = name === 'isParent' ? e.target.checked : value;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: newValues,
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (tasklistObj.firebaseKey) {
       updateTaskList(formData)
         .then(() => router.push('/'));
     } else {
-      createTaskList(formData).then(({ name }) => {
+      const payload = { ...formData };
+      createTaskList(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateTaskList(patchPayload).then(() => router.push('/'));
       });
     }
   };
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} User</h2>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <h2 className="text-white mt-5">{tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist</h2>
 
-      {/* NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="User Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter a name" name="name" value={formData.name} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* Booking SELECT  */}
+        <FloatingLabel controlId="floatingSelect" label="Bookings">
+          <Form.Select
+            aria-label="Bookings"
+            name="booking_id"
+            onChange={handleChange}
+            className="mb-3"
+            value={tasklistObj.booking_id}
+            required
+          >
+            <option value="">Select Booking</option>
+            {bookings.map((booking) => (
+              <option key={booking.firebaseKey} value={booking.firebaseKey}>
+                {booking.sitter_id}
+              </option>
+            ))}
+          </Form.Select>
+        </FloatingLabel>
 
-      {/* IMAGE INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="User Image" className="mb-3">
-        <Form.Control type="url" placeholder="Enter an image url" name="image" value={formData.image} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* BREAKFAST INPUT  */}
+        <FloatingLabel controlId="floatingInput1" label="Breakfast" className="mb-3">
+          <Form.Control type="text" placeholder="What For Breakfast?" name="breakfast" value={formData.breakfast} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* LOCATION INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="User Location" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Location" name="location" value={formData.location} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* PLAYTIME INPUT  */}
+        <FloatingLabel controlId="floatingInput2" label="Playtime" className="mb-3">
+          <Form.Control type="text" placeholder="What Games Are We Playing?" name="playtime" value={formData.playtime} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* Email INPUT  */}
-      <FloatingLabel controlId="floatingInput5" label="User Email" className="mb-3">
-        <Form.Control type="email" placeholder="Enter Email" name="email" value={formData.email} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* READING INPUT  */}
+        <FloatingLabel controlId="floatingInput3" label="Reading" className="mb-3">
+          <Form.Control type="text" placeholder="What Are We Read?" name="reading" value={formData.reading} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* DESCRIPTION TEXTAREA  */}
-      <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
-        <Form.Control as="textarea" placeholder="Description" style={{ height: '100px' }} name="description" value={formData.description} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* NAPTIME INPUT  */}
+        <FloatingLabel controlId="floatingInput4" label="Naptime" className="mb-3">
+          <Form.Control type="text" placeholder="When Is Naptime?" name="naptime" value={formData.naptime} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* Phone #  */}
-      <FloatingLabel controlId="floatingInput4" label="Phone" className="mb-3">
-        <Form.Control type="tel" placeholder="###-###-####" style={{ height: '100px' }} name="phone" value={formData.phone} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* SNACKS  */}
+        <FloatingLabel controlId="floatingInput5" label="Snacks" className="mb-3">
+          <Form.Control type="text" placeholder="What Are We Snacking On Today?" name="snacks" value={formData.snacks} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <Form.Check
-        className="text-black mb-3"
-        type="switch"
-        id="isParent"
-        name="isParent"
-        label="Parent"
-        checked={formData.isParent}
-        onChange={(e) => {
-          setFormData((prevState) => ({
-            ...prevState,
-            isParent: e.target.checked,
-          }));
-        }}
-      />
+        {/* BATHROOM BREAK INPUT  */}
+        <FloatingLabel controlId="floatingInput6" label="Bathroom Break" className="mb-3">
+          <Form.Control type="text" placeholder="How Many Breaks Should Child Take?" name="bathroombreak" value={formData.bathroombreak} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} User</Button>
-    </Form>
+        {/* LUNCH INPUT  */}
+        <FloatingLabel controlId="floatingInput7" label="Lunch" className="mb-3">
+          <Form.Control type="text" placeholder="What Should We Eat For Lunch" name="lunch" value={formData.lunch} onChange={handleChange} required />
+        </FloatingLabel>
+
+        {/* DETAILS TEXTAREA  */}
+        <FloatingLabel controlId="floatingTextarea" label="Details" className="mb-3">
+          <Form.Control type="textarea" placeholder="Deatils About The Day." style={{ height: '100px' }} name="details" value={formData.details} onChange={handleChange} required />
+        </FloatingLabel>
+
+        {/* IMAGE INPUT  */}
+        <FloatingLabel controlId="floatingInput8" label="Image" className="mb-3">
+          <Form.Control type="url" placeholder="Enter An Image Of Child." name="image" value={formData.image} onChange={handleChange} required />
+        </FloatingLabel>
+        {/* SUBMIT BUTTON  */}
+        <Button type="submit">{tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist</Button>
+      </Form>
+    </>
   );
 }
 
 TasklistForm.propTypes = {
-  obj: PropTypes.shape({
+  tasklistObj: PropTypes.shape({
     breakfast: PropTypes.string,
+    playtime: PropTypes.string,
+    reading: PropTypes.string,
+    naptime: PropTypes.string,
+    snacks: PropTypes.string,
+    bathroombreak: PropTypes.string,
+    lunch: PropTypes.string,
+    image: PropTypes.string,
+    details: PropTypes.string,
     firebaseKey: PropTypes.string,
+    booking_id: PropTypes.string,
   }),
 };
 TasklistForm.defaultProps = {
-  obj: initialState,
+  tasklistObj: initialState,
 };

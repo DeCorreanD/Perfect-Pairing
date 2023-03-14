@@ -48,7 +48,7 @@ export default function BookingForm({ bookingobj }) {
         <h2 className="text-white mt-5">{bookingobj.firebaseKey ? 'Update' : 'Create'} Booking</h2>
 
         {/* START_TIME INPUT  */}
-        <FloatingLabel controlId="floatingInput1" label="start_time" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Start Time" className="mb-3">
           <Form.Control
             type="time"
             min="00:00"
@@ -62,7 +62,7 @@ export default function BookingForm({ bookingobj }) {
         </FloatingLabel>
 
         {/* End_TIME INPUT  */}
-        <FloatingLabel controlId="floatingInput1" label="end_time" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="End Time" className="mb-3">
           <Form.Control
             type="time"
             min="00:00"
@@ -76,7 +76,7 @@ export default function BookingForm({ bookingobj }) {
         </FloatingLabel>
 
         {/* NOTES INPUT  */}
-        <FloatingLabel controlId="floatingInput3" label="notes" className="mb-3">
+        <FloatingLabel controlId="floatingInput3" label="Child Information & Add Date" className="mb-3">
           <Form.Control
             type="text"
             placeholder="Enter Notes"
