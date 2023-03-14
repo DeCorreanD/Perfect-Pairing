@@ -2,8 +2,10 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getTaskList = (bookingId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasklist.json?orderBy="bookingId"&equalTo="${bookingId}"`, {
+// eslint-disable-next-line camelcase
+const getBooking = (parent_id) => new Promise((resolve, reject) => {
+  // eslint-disable-next-line camelcase
+  fetch(`${endpoint}/booking.json?orderBy="parent_id"&equalTo="${parent_id}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -20,8 +22,8 @@ const getTaskList = (bookingId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleTaskList = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasklist/${firebaseKey}.json`, {
+const getSingleBooking = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/booking/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -32,8 +34,8 @@ const getSingleTaskList = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createTaskList = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasklist.json`, {
+const createBooking = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/booking.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -45,8 +47,8 @@ const createTaskList = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateTaskList = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasklist/${payload.firebaseKey}.json`, {
+const updateBooking = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/booking/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -58,8 +60,8 @@ const updateTaskList = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteTaskList = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasklist/${firebaseKey}.json`, {
+const deleteBooking = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/booking/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -70,9 +72,9 @@ const deleteTaskList = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 export {
-  getTaskList,
-  getSingleTaskList,
-  createTaskList,
-  updateTaskList,
-  deleteTaskList,
+  getBooking,
+  getSingleBooking,
+  createBooking,
+  updateBooking,
+  deleteBooking,
 };
