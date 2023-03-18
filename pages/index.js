@@ -17,18 +17,10 @@ function Home() {
 
   return (
     <>
-      <div
-        className="text-center my-4"
-        style={{
-          height: '90vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
-        <h1>{user.displayName}! </h1>
-        <p>Perfect Pairing provides an easy way to find local babysitting jobs with parents in your community. You don’t have to weed through job boards, instead, parents will request you.</p>
-        <div className="">
+      <div className="text-center my-4" id="index">
+        <h1 style={{ fontSize: '17px', fontFamily: 'sans-serif', fontWeight: 'bold' }}>{user.displayName}! </h1>
+        <p style={{ fontSize: '10px', fontFamily: 'sans-serif' }}>Perfect Pairing provides an easy way to find local babysitting jobs with parents in your community. You don’t have to weed through job boards, instead, parents will request you.</p>
+        <div className="d-flex flex-wrap">
           {sitters.map((sitter) => (
             <UserCard key={sitter.firebaseKey} userObj={sitter} onUpdate={getAllSitter} />
           ))}

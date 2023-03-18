@@ -4,8 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 a {
@@ -18,5 +17,30 @@ a {
 }
 
 body {
-  background-color: lightgray;
+  background-color: white;
+  margin-bottom: 75px;
+  overflow-x: hidden;
+  background-image: url("https://www.canva.com/design/DAFda9Mz93M/acXs0RJ1tVJn1sMJaSL_8w/edit?utm_content=DAFda9Mz93M&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
+}
+.color-nav {
+  background-color: lightgoldenrodyellow;
+
+;
+}
+.navbar a {
+  color: #8AAAE5;
+}
+#user-card {
+  background-color: lightgoldenrodyellow;
+  color: #8AAAE5;
+}
+#user-body {
+  padding: 0%
+}
+#index {
+  color:#8AAAE5;
+}
+#navbar {
+  justify-content: right;
+  text-align: center;
 }

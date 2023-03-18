@@ -49,37 +49,49 @@ export default function UserForm({ obj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} User</h2>
+    <Form
+      onSubmit={handleSubmit}
+      style={{
+        marginTop: '50px',
+        padding: '60px',
+        width: '450px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '1em',
+      }}
+    >
+      <h2 className="mt-5" style={{ paddingBottom: '50px' }}>
+        {obj.firebaseKey ? 'Update' : 'Create'} User
+      </h2>
 
       {/* NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="User Name" className="mb-3">
+      <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
         <Form.Control type="text" placeholder="Enter a name" name="name" value={formInfo.name} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* IMAGE INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="User Image" className="mb-3">
+      <FloatingLabel controlId="floatingInput2" label="Image" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="image" value={formInfo.image} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* LOCATION INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="User Location" className="mb-3">
+      <FloatingLabel controlId="floatingInput3" label="Location" className="mb-3">
         <Form.Control type="text" placeholder="Enter Location" name="location" value={formInfo.location} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* Email INPUT  */}
-      <FloatingLabel controlId="floatingInput5" label="User Email" className="mb-3">
+      <FloatingLabel controlId="floatingInput5" label="Email" className="mb-3">
         <Form.Control type="email" placeholder="Enter Email" name="email" value={formInfo.email} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* DESCRIPTION TEXTAREA  */}
-      <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
-        <Form.Control as="textarea" placeholder="Description" style={{ height: '100px' }} name="description" value={formInfo.description} onChange={handleChange} required />
+      <FloatingLabel controlId="floatingTextarea" label="Experience" className="mb-3">
+        <Form.Control as="textarea" placeholder="Description" style={{ height: '75px' }} name="description" value={formInfo.description} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* Phone #  */}
-      <FloatingLabel controlId="floatingInput4" label="Phone" className="mb-3">
-        <Form.Control type="tel" placeholder="###-###-####" style={{ height: '100px' }} name="phone" value={formInfo.phone} onChange={handleChange} required />
+      <FloatingLabel controlId="floatingInput4" label="Phone #" className="mb-3">
+        <Form.Control type="tel" placeholder="###-###-####" name="phone" value={formInfo.phone} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
@@ -99,7 +111,9 @@ export default function UserForm({ obj }) {
       />
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} User</Button>
+      <Button variant="outline-dark" type="submit">
+        {obj.firebaseKey ? 'Update' : 'Create'} User
+      </Button>
     </Form>
   );
 }

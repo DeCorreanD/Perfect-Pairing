@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button } from 'react-bootstrap';
 import viewUserInfo from '../../api/mergeData';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -16,28 +15,16 @@ export default function ViewUser() {
     viewUserInfo(firebaseKey).then(setUserInfo);
   }, [user, firebaseKey]);
   return (
-    <div className="mt-5 d-flex flex-wrap">
+    <div className="mt-5 d-flex flex-wrap" style={{ justifyContent: 'center', marginTop: '200px', padding: '100px' }}>
       <div className="d-flex flex-column">
-        <img src={userInfo.image} alt={userInfo.name} style={{ width: '300px' }} />
+        <img src={userInfo.image} alt={userInfo.name} style={{ width: '300px', borderRadius: '60em' }} />
       </div>
       <div className="text-black ms-5 details">
-        <h5>{userInfo.name}</h5>
-        <p>{userInfo.description}</p>
-        <p> {userInfo.email}</p>
-        <p>{userInfo.phone}</p>
-        <p>{userInfo.location}</p>
-
-        {userInfo.isParent ? (
-          <div>
-            {/* show Sitter-specific Information */}
-            <p> Sitter Stick Together</p>
-          </div>
-        ) : (
-          <div>
-            {/* show Parent-specific Information */}
-            <Button variant="outline-primary"> Make A Perfect Pairing </Button>
-          </div>
-        )}
+        <h5 style={{ fontWeight: 'bold', fontSize: '25px' }}>{userInfo.name}</h5>
+        <p style={{ fontSize: '14px' }}>{userInfo.description}</p>
+        <p style={{ fontSize: '14px' }}> {userInfo.email}</p>
+        <p style={{ fontSize: '14px' }}>{userInfo.phone}</p>
+        <p style={{ fontSize: '14px' }}>{userInfo.location}</p>
       </div>
     </div>
   );
