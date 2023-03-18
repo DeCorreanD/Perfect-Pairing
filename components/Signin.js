@@ -13,7 +13,7 @@ function Signin() {
       }}
     >
       <h1>The Perfect Pairing Is Only A Click Away!</h1>
-      <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
+      <button type="button" className="btn btn-primary btn copy-btn" onClick={signIn}>
         Join The Family
       </button>
     </div>

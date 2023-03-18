@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { createBooking, updateBooking } from '../../api/bookingData';
-import { getSitter } from '../../api/usersData';
+import { getParent, getSitter } from '../../api/usersData';
 
 const initialState = {
   start_time: '',
@@ -14,10 +14,12 @@ const initialState = {
 export default function BookingForm({ bookingobj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [sitters, setSitters] = useState([]);
+  const [parents, setParents] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
     getSitter().then(setSitters);
+    getParent().then(setParents);
     if (bookingobj.firebaseKey) setFormInput(bookingobj);
   }, [bookingobj]);
 
@@ -44,59 +46,51 @@ export default function BookingForm({ bookingobj }) {
   };
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h2 className="text-white mt-5">{bookingobj.firebaseKey ? 'Update' : 'Create'} Booking</h2>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          marginTop: '50px',
+          padding: '60px',
+          width: '450px',
+          justifyContent: 'center',
+          alignContent: 'center',
+          borderRadius: '1em',
+        }}
+      >
+        <h2 className=" mt-5" style={{ paddingBottom: '50px' }}>
+          {bookingobj.firebaseKey ? 'Update' : 'Create'} Booking
+        </h2>
 
         {/* START_TIME INPUT  */}
         <FloatingLabel controlId="floatingInput1" label="Start Time" className="mb-3">
-          <Form.Control
-            type="time"
-            min="00:00"
-            max="24:00"
-            placeholder="Enter Start Time"
-            name="start_time"
-            value={formInput.start_time}
-            onChange={handleChange}
-            required
-          />
+          <Form.Control type="time" min="00:00" max="24:00" placeholder="Enter Start Time" name="start_time" value={formInput.start_time} onChange={handleChange} required />
         </FloatingLabel>
 
         {/* End_TIME INPUT  */}
         <FloatingLabel controlId="floatingInput1" label="End Time" className="mb-3">
-          <Form.Control
-            type="time"
-            min="00:00"
-            max="24:00"
-            placeholder="Enter End Time"
-            name="end_time"
-            value={formInput.end_time}
-            onChange={handleChange}
-            required
-          />
+          <Form.Control type="time" min="00:00" max="24:00" placeholder="Enter End Time" name="end_time" value={formInput.end_time} onChange={handleChange} required />
         </FloatingLabel>
 
         {/* NOTES INPUT  */}
-        <FloatingLabel controlId="floatingInput3" label="Child Information & Add Date" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Enter Notes"
-            name="notes"
-            value={formInput.notes}
-            onChange={handleChange}
-            required
-          />
+        <FloatingLabel controlId="floatingInput3" label="Child Information " className="mb-3">
+          <Form.Control type="text" placeholder="Enter Notes" name="notes" value={formInput.notes} onChange={handleChange} required />
+        </FloatingLabel>
+
+        {/* Parent SELECT  */}
+        <FloatingLabel controlId="floatingSelect" label="Parent">
+          <Form.Select aria-label="Parent" name="parent_id" onChange={handleChange} className="mb-3" value={bookingobj.parent_id} required>
+            <option value="">Select an Parent</option>
+            {parents.map((parent) => (
+              <option key={parent.firebaseKey} value={parent.firebaseKey}>
+                {parent.name}
+              </option>
+            ))}
+          </Form.Select>
         </FloatingLabel>
 
         {/* SITTER SELECT  */}
         <FloatingLabel controlId="floatingSelect" label="Sitter">
-          <Form.Select
-            aria-label="Sitter"
-            name="sitter_id"
-            onChange={handleChange}
-            className="mb-3"
-            value={bookingobj.sitter_id}
-            required
-          >
+          <Form.Select aria-label="Sitter" name="sitter_id" onChange={handleChange} className="mb-3" value={bookingobj.sitter_id} required>
             <option value="">Select an Babysitter</option>
             {sitters.map((sitter) => (
               <option key={sitter.firebaseKey} value={sitter.firebaseKey}>
@@ -107,10 +101,11 @@ export default function BookingForm({ bookingobj }) {
         </FloatingLabel>
 
         {/* SUBMIT BUTTON  */}
-        <Button type="submit">{bookingobj.firebaseKey ? 'Update' : 'Create'} Booking</Button>
+        <Button variant="outline-dark" type="submit">
+          {bookingobj.firebaseKey ? 'Update' : 'Create'} Booking
+        </Button>
       </Form>
     </>
-
   );
 }
 
@@ -122,6 +117,7 @@ BookingForm.propTypes = {
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
     sitter_id: PropTypes.string,
+    parent_id: PropTypes.string,
   }),
 };
 

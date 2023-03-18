@@ -1,4 +1,5 @@
-import { getSingleUser } from './usersData';
+import { getSingleUser, getUsersBookings } from './usersData';
+import getSingleBooking from './bookingData';
 
 const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleUser(firebaseKey)]).then(([userObj]) => {
@@ -6,4 +7,13 @@ const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default viewUserInfo;
+const viewBookingInfo = (firebaseKey) => new Promise((resolve, reject) => {
+  getSingleBooking(firebaseKey)
+    .then((booking) => {
+      getUsersBookings(booking.firebaseKey).then((thebookings) => {
+        resolve({ ...booking, thebookings });
+      });
+    })
+    .catch(reject);
+});
+export { viewUserInfo, viewBookingInfo };

@@ -21,6 +21,7 @@ export default function TasklistForm({ tasklistObj }) {
   const [formData, setFormData] = useState(initialState);
   const [bookings, setBookings] = useState([]);
   const router = useRouter();
+
   useEffect(() => {
     getBooking().then(setBookings);
     if (tasklistObj.firebaseKey) setFormData(tasklistObj);
@@ -49,23 +50,28 @@ export default function TasklistForm({ tasklistObj }) {
   };
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h2 className="text-white mt-5">{tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist</h2>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          marginTop: '50px',
+          padding: '60px',
+          width: '450px',
+          justifyContent: 'center',
+          alignContent: 'center',
+          borderRadius: '1em',
+        }}
+      >
+        <h2 className="mt-5" style={{ paddingBottom: '50px' }}>
+          {tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist
+        </h2>
 
-        {/* Booking SELECT  */}
-        <FloatingLabel controlId="floatingSelect" label="Bookings">
-          <Form.Select
-            aria-label="Bookings"
-            name="booking_id"
-            onChange={handleChange}
-            className="mb-3"
-            value={tasklistObj.booking_id}
-            required
-          >
-            <option value="">Select Booking</option>
+        {/* BOOKING SELECT  */}
+        <FloatingLabel controlId="floatingSelect" label="Booking">
+          <Form.Select aria-label="Booking" name="booking_id" onChange={handleChange} className="mb-3" value={tasklistObj.booking_id} required>
+            <option value="">Select an Booking</option>
             {bookings.map((booking) => (
               <option key={booking.firebaseKey} value={booking.firebaseKey}>
-                {booking.sitter_id}
+                {booking.notes}
               </option>
             ))}
           </Form.Select>
@@ -116,7 +122,9 @@ export default function TasklistForm({ tasklistObj }) {
           <Form.Control type="url" placeholder="Enter An Image Of Child." name="image" value={formData.image} onChange={handleChange} required />
         </FloatingLabel>
         {/* SUBMIT BUTTON  */}
-        <Button type="submit">{tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist</Button>
+        <Button variant="outline-dark" type="submit">
+          {tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist
+        </Button>
       </Form>
     </>
   );

@@ -1,11 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
 import { useAuth } from '../utils/context/authContext';
 import { signOut } from '../utils/auth';
 import { getUser } from '../api/usersData';
 
-export default function UserProfile() {
+const initialState = {
+
+};
+
+export default function UserProfile({ userObj }) {
   const { user } = useAuth();
   const [profileInfo, setProfileInfo] = useState({});
 
@@ -21,23 +27,29 @@ export default function UserProfile() {
   return (
     <div>
       <div className="text-black mb-3" style={{ marginTop: '35px' }}>
-        <img src={profileInfo.image} alt="img" width="100px" height="100px" />
-        <h1>Name: {profileInfo.name}</h1>
-        <h2>Email: {profileInfo.email}</h2>
-        <h2>Phone: {profileInfo.phone}</h2>
+        <img src={profileInfo.image} alt="img" width="100px" height="100px" style={{ borderRadius: '60em' }} />
+        <h5 style={{ fontWeight: 'bold', fontSize: '25px' }}>Name: {profileInfo.name}</h5>
+        <p style={{ fontSize: '14px' }}>Email: {profileInfo.email}</p>
+        <p style={{ fontSize: '14px' }}>Phone: {profileInfo.phone}</p>
 
         {profileInfo.isParent ? (
           <div>
             {/* show Parent-specific Information */}
-            <h2>Parent</h2>
+            <p>Parent</p>
+            <Link href={`/bookings/${user.firebaseKey}`} passHref>
+              <Button variant="outline-info btn-sm">Bookings</Button>
+            </Link>
           </div>
         ) : (
           <div>
             {/* show Sitter-specific Information */}
-            <h2>Sitter</h2>
+            <p>Sitter</p>
+            <Link href={`/bookings/${userObj.firebaseKey}`} passHref>
+              <Button variant="outline-info btn-sm">Bookings</Button>
+            </Link>
           </div>
         )}
-        <Button variant="outline-danger" onClick={signOut}>
+        <Button variant="outline-danger btn-sm" onClick={signOut}>
           {' '}
           Sign Out
         </Button>
@@ -45,3 +57,13 @@ export default function UserProfile() {
     </div>
   );
 }
+
+UserProfile.propTypes = {
+  userObj: PropTypes.shape({
+    firebaseKey: PropTypes.string,
+  }),
+};
+UserProfile.defaultProps = {
+
+  userObj: initialState,
+};

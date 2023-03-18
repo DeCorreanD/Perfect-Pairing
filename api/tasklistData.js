@@ -2,8 +2,10 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getTaskList = (bookingId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasklist.json?orderBy="bookingId"&equalTo="${bookingId}"`, {
+// eslint-disable-next-line camelcase
+const getTaskList = (booking_id) => new Promise((resolve, reject) => {
+  // eslint-disable-next-line camelcase
+  fetch(`${endpoint}/tasklist.json?orderBy="booking_id"&equalTo="${booking_id}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

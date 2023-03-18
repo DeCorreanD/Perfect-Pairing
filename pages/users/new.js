@@ -1,8 +1,6 @@
 import React from 'react';
-import UserForm from '../../components/Forms/UserForm';
+import UserForm from '../../components/forms/UserForm';
 
 export default function newUser() {
-  return (
-    <UserForm />
-  );
+  return <UserForm />;
 }

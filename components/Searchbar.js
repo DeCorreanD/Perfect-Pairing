@@ -21,7 +21,7 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (setSearchBar !== '') router.push(`/searchbar/${searchBar}`);
+    if (searchBar !== '') router.push(`/searchbar/${searchBar}`);
     setSearchBar('');
   };
   // defines handleSubmit function that takes in event e as argument
@@ -31,9 +31,11 @@ export default function SearchBar() {
   // setSearchBar('') sets value of searchBar in component's state to empty string
 
   return (
-    <Form className="searchbar" onSubmit={handleSubmit}>
-      <FormControl type="text" placeholder="Search For Perfect Pairing" onChange={handleChange} value={searchBar} style={{ width: '225px' }} />
-    </Form>
+    <>
+      <Form className="searchbar" onSubmit={handleSubmit}>
+        <FormControl type="text" placeholder="Search" onChange={handleChange} value={searchBar} style={{ width: '150px', color: '#8AAAE5' }} />
+      </Form>
+    </>
   );
   // return statement declares what will be rendered in UI
   // creates a Form component from react-bootstrap library
