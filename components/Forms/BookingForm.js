@@ -9,6 +9,8 @@ const initialState = {
   start_time: '',
   end_time: '',
   notes: '',
+  name: '',
+  date: '',
 };
 
 export default function BookingForm({ bookingobj }) {
@@ -60,6 +62,16 @@ export default function BookingForm({ bookingobj }) {
         <h2 className=" mt-5" style={{ paddingBottom: '50px' }}>
           {bookingobj.firebaseKey ? 'Update' : 'Create'} Booking
         </h2>
+
+        {/* NAME INPUT  */}
+        <FloatingLabel controlId="floatingInput3" label="Booking Name " className="mb-3">
+          <Form.Control type="text" placeholder="Enter Name" name="name" value={formInput.name} onChange={handleChange} required />
+        </FloatingLabel>
+
+        {/* Date INPUT  */}
+        <FloatingLabel controlId="floatingInput3" label="Date" className="mb-3">
+          <Form.Control type="date" inplaceholder="Enter Date" name="date" value={formInput.date} onChange={handleChange} required />
+        </FloatingLabel>
 
         {/* START_TIME INPUT  */}
         <FloatingLabel controlId="floatingInput1" label="Start Time" className="mb-3">
@@ -118,6 +130,8 @@ BookingForm.propTypes = {
     firebaseKey: PropTypes.string,
     sitter_id: PropTypes.string,
     parent_id: PropTypes.string,
+    name: PropTypes.string,
+    date: PropTypes.string,
   }),
 };
 

@@ -30,8 +30,8 @@ function UserCard({ userObj, onUpdate }) {
         <Card.Title style={{ fontWeight: 'bold', fontSize: '20px' }}>{userObj.name}</Card.Title>
         {/* DYNAMIC LINK TO VIEW THE USER DETAILS  */}
         <Card.Text style={{ fontSize: '10px' }}>{userObj.description}</Card.Text>
-        <Card.Text style={{ fontSize: '10px' }}>{userObj.email}</Card.Text>
-        <Card.Text style={{ fontSize: '10px' }}>{userObj.phone}</Card.Text>
+        {/* <Card.Text style={{ fontSize: '10px' }}>{userObj.email}</Card.Text>
+        <Card.Text style={{ fontSize: '10px' }}>{userObj.phone}</Card.Text> */}
         <Card.Text style={{ fontSize: '10px' }}>{userObj.location}</Card.Text>
 
         {cardInfo.isParent ? (

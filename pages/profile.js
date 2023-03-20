@@ -2,16 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
 import { useAuth } from '../utils/context/authContext';
 import { signOut } from '../utils/auth';
 import { getUser } from '../api/usersData';
 
-const initialState = {
-
-};
-
-export default function UserProfile({ userObj }) {
+export default function UserProfile() {
   const { user } = useAuth();
   const [profileInfo, setProfileInfo] = useState({});
 
@@ -36,15 +31,18 @@ export default function UserProfile({ userObj }) {
           <div>
             {/* show Parent-specific Information */}
             <p>Parent</p>
-            <Link href={`/bookings/${user.firebaseKey}`} passHref>
+            <Link href="/bookings" passHref>
               <Button variant="outline-info btn-sm">Bookings</Button>
+            </Link>
+            <Link href="/tasklist" passHref>
+              <Button variant="outline-info btn-sm">Tasklist</Button>
             </Link>
           </div>
         ) : (
           <div>
             {/* show Sitter-specific Information */}
             <p>Sitter</p>
-            <Link href={`/bookings/${userObj.firebaseKey}`} passHref>
+            <Link href="/bookings" passHref>
               <Button variant="outline-info btn-sm">Bookings</Button>
             </Link>
           </div>
@@ -57,13 +55,3 @@ export default function UserProfile({ userObj }) {
     </div>
   );
 }
-
-UserProfile.propTypes = {
-  userObj: PropTypes.shape({
-    firebaseKey: PropTypes.string,
-  }),
-};
-UserProfile.defaultProps = {
-
-  userObj: initialState,
-};

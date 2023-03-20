@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import viewUserInfo from '../../api/mergeData';
+import { viewUserInfo } from '../../api/mergeData';
 import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewUser() {

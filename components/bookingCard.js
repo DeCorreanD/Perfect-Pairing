@@ -13,10 +13,11 @@ function BookingCard({ bookingObj, onUpdate }) {
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Body>
-        <h1>Booking Card</h1>
-        <Card.Title>{bookingObj.start_time}</Card.Title>
-        <Card.Text>{bookingObj.end_time}</Card.Text>
-        <Card.Text>{bookingObj.notes}</Card.Text>
+        <h1>{bookingObj.name}</h1>
+        <h3>Date:{bookingObj.date}</h3>
+        <Card.Title>Start Time:{bookingObj.start_time}</Card.Title>
+        <Card.Text>End Time:{bookingObj.end_time}</Card.Text>
+        <Card.Text>Child Information:{bookingObj.notes}</Card.Text>
         <Link href={`/bookings/${bookingObj.firebaseKey}`} passHref>
           <Button variant="outline-primary" className="m-2">
             VIEW
@@ -38,8 +39,10 @@ BookingCard.propTypes = {
     sitter_id: PropTypes.string,
     parent_id: PropTypes.string,
     start_time: PropTypes.string,
+    date: PropTypes.string,
     end_time: PropTypes.string,
     notes: PropTypes.string,
+    name: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
