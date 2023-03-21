@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
-import { deleteBooking } from '../api/bookingData';
+// import { deleteBooking } from '../api/bookingData';
+import { deleteBookingTasklist } from '../api/mergeData';
 
 function BookingCard({ bookingObj, onUpdate }) {
   const deleteThisBooking = () => {
     if (window.confirm('Delete?')) {
-      deleteBooking(bookingObj.firebaseKey).then(() => onUpdate());
+      deleteBookingTasklist(bookingObj.firebaseKey).then(() => onUpdate());
     }
   };
   return (

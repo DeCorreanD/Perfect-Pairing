@@ -3,9 +3,9 @@ import { clientCredentials } from '../utils/client';
 const endpoint = clientCredentials.databaseURL;
 
 // eslint-disable-next-line camelcase
-const getTaskList = (booking_id) => new Promise((resolve, reject) => {
+const getTaskListByBooking = (firebaseKey) => new Promise((resolve, reject) => {
   // eslint-disable-next-line camelcase
-  fetch(`${endpoint}/tasklist.json?orderBy="booking_id"&equalTo="${booking_id}"`, {
+  fetch(`${endpoint}/tasklist.json?orderBy="booking_id"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -22,6 +22,24 @@ const getTaskList = (booking_id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllTaskList = () => new Promise((resolve, reject) => {
+  // eslint-disable-next-line camelcase
+  fetch(`${endpoint}/tasklist.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
 const getSingleTaskList = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/tasklist/${firebaseKey}.json`, {
     method: 'GET',
@@ -72,9 +90,10 @@ const deleteTaskList = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 export {
-  getTaskList,
+  getTaskListByBooking,
   getSingleTaskList,
   createTaskList,
   updateTaskList,
   deleteTaskList,
+  getAllTaskList,
 };

@@ -22,6 +22,25 @@ const getParentBooking = (parent_id) => new Promise((resolve, reject) => {
     })
     .catch(reject);
 });
+
+const getBooking = () => new Promise((resolve, reject) => {
+  // eslint-disable-next-line camelcase
+  fetch(`${endpoint}/booking.json?`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
 // eslint-disable-next-line camelcase
 const getSitterBooking = (sitter_id) => new Promise((resolve, reject) => {
   // eslint-disable-next-line camelcase
@@ -109,4 +128,5 @@ export {
   createBooking,
   updateBooking,
   deleteBooking,
+  getBooking,
 };

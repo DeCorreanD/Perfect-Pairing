@@ -46,7 +46,7 @@ export default function TasklistForm({ tasklistObj }) {
     e.preventDefault();
     if (tasklistObj.firebaseKey) {
       updateTaskList(formData)
-        .then(() => router.push('/'));
+        .then(() => router.push(`/tasklists/${tasklistObj.firebaseKey}`));
     } else {
       const payload = { ...formData };
       createTaskList(payload).then(({ name }) => {

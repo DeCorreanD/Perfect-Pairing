@@ -18,17 +18,17 @@ export default function TasklistCard({ tasklistObj, onUpdate }) {
         <Card.Text>Playtime:{tasklistObj.playtime}</Card.Text>
         <Card.Text>Reading:{tasklistObj.reading}</Card.Text>
         <Card.Text>Naptime:{tasklistObj.naptime}</Card.Text>
-        <Card.Text>Snacks{tasklistObj.snacks}</Card.Text>
+        <Card.Text>Snacks:{tasklistObj.snacks}</Card.Text>
         <Card.Text>Bathroombreak:{tasklistObj.bathroombreak}</Card.Text>
         <Card.Text>Lunch:{tasklistObj.lunch}</Card.Text>
         <Card.Text>Details:{tasklistObj.details}</Card.Text>
 
-        <Link href={`/tasklist/${tasklistObj.firebaseKey}`} passHref>
+        <Link href={`/tasklists/${tasklistObj.firebaseKey}`} passHref>
           <Button variant="outline-primary" className="m-2">
             VIEW
           </Button>
         </Link>
-        <Link href={`/tasklist/edit/${tasklistObj.firebaseKey}`} passHref>
+        <Link href={`/tasklists/edit/${tasklistObj.firebaseKey}`} passHref>
           <Button variant="outline-info">EDIT</Button>
         </Link>
         <Button variant="outline-danger" onClick={deleteThisTasklist} className="m-2">
