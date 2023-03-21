@@ -38,8 +38,8 @@ const getUserLogin = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getUsersBookings = (bookingFirebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/users.json?orderBy="parent_id"&equalTo="${bookingFirebaseKey}"`, {
+const getUsersBookings = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="firebaseKey"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

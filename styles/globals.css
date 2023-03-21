@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
+
 html,
 body {
   padding: 0;
@@ -20,7 +21,7 @@ body {
   background-color: white;
   margin-bottom: 75px;
   overflow-x: hidden;
-  background-image: url("https://www.canva.com/design/DAFda9Mz93M/acXs0RJ1tVJn1sMJaSL_8w/edit?utm_content=DAFda9Mz93M&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
+  /* background-image: url(); */
 }
 .color-nav {
   background-color: lightgoldenrodyellow;

@@ -3,7 +3,7 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
-import UserForm from '../components/Forms/UserForm';
+import UserForm from '../components/forms/UserForm';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -16,7 +16,6 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user.firstLogin) {
     return <UserForm obj={user} />;
   }
-  console.warn(user, 'ViewDirector');
   // what the user should see if they are logged in
   if (user) {
     return (

@@ -22,10 +22,10 @@ const getParentBooking = (parent_id) => new Promise((resolve, reject) => {
     })
     .catch(reject);
 });
-// eslint-disable-next-line camelcase
-const getBooking = (parent_id) => new Promise((resolve, reject) => {
+
+const getBooking = () => new Promise((resolve, reject) => {
   // eslint-disable-next-line camelcase
-  fetch(`${endpoint}/booking.json?orderBy="parent_id"&equalTo="${parent_id}"`, {
+  fetch(`${endpoint}/booking.json?`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -124,9 +124,9 @@ export {
   getParentBooking,
   viewBookingInfo,
   getSitterBooking,
-  getBooking,
   getSingleBooking,
   createBooking,
   updateBooking,
   deleteBooking,
+  getBooking,
 };
