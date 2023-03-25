@@ -29,17 +29,17 @@ body {
 ;
 }
 .navbar a {
-  color: #8AAAE5;
+  color: black;
 }
 #user-card {
   background-color: lightgoldenrodyellow;
-  color: #8AAAE5;
+  color: black;
 }
 #user-body {
   padding: 0%
 }
 #index {
-  color:#8AAAE5;
+  color: black;
 }
 #navbar {
   justify-content: right;

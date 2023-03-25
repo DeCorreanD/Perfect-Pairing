@@ -6,7 +6,12 @@ import BookingCard from '../components/bookingCard';
 
 export default function Bookings() {
   const [bookings, setBookings] = useState([]);
+  // const [allBookings, setAllBookings] = useState([]);
   const { user } = useAuth();
+
+  // const getAllBookingsData = () => {
+  //   getBooking().then(setAllBookings);
+  // };
 
   const getBookingData = () => {
     // Get the current User from the UsersTable to find out if they are a Parent or Sitter.
@@ -18,15 +23,20 @@ export default function Bookings() {
       }
     });
   };
+  // useEffect(() => {
+  //   getAllBookingsData();
+  // });
   useEffect(() => {
     getBookingData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   return (
-    <div className="d-flex flex-wrap">
-      {bookings.map((booking) => (
-        <BookingCard key={booking.firebaseKey} bookingObj={booking} onUpdate={getBookingData} />
-      ))}
-    </div>
+    <>
+      <div className="d-flex flex-wrap">
+        {bookings.map((booking) => (
+          <BookingCard key={booking.firebaseKey} bookingObj={booking} onUpdate={getBookingData} />
+        ))}
+      </div>
+    </>
   );
 }
