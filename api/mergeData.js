@@ -1,6 +1,8 @@
 import { getSingleUser } from './usersData';
-import { deleteBooking, getSingleBooking } from './bookingData';
-import { deleteTaskList, getSingleTaskList, getTaskListByBooking } from './tasklistData';
+import { deleteBooking, getBooking, getSingleBooking } from './bookingData';
+import {
+  deleteTaskList, getAllTaskList, getSingleTaskList, getTaskListByBooking,
+} from './tasklistData';
 
 const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleUser(firebaseKey)]).then(([userObj]) => {
@@ -16,12 +18,34 @@ const viewBookingInfo = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const viewBookingDetails = (firebaseKey) => new Promise((resolve, reject) => {
+  getSingleBooking(firebaseKey)
+    .then((bookingObj) => {
+      getSingleTaskList(bookingObj.booking_id).then((tasklistObj) => {
+        resolve({ tasklistObj, ...bookingObj });
+      });
+    })
+    .catch((error) => reject(error));
+});
+
 const viewTasklistInfo = (firebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleTaskList(firebaseKey)])
     .then(([tasklistObj]) => {
       resolve({ ...tasklistObj });
     })
     .catch((error) => reject(error));
+});
+
+// eslint-disable-next-line camelcase
+const viewBookingTasklist = (booking_id) => new Promise((resolve, reject) => {
+  getBooking().then((bookingArray) => {
+    console.warn(bookingArray, 'Bookings');
+    const viewBookingsPromise = bookingArray.map((booking) => getAllTaskList(booking.booking_id));
+
+    Promise.all(viewBookingsPromise).then(() => {
+      getSingleTaskList(booking_id).then(resolve);
+    });
+  }).catch((error) => reject(error));
 });
 
 // eslint-disable-next-line camelcase
@@ -37,5 +61,5 @@ const deleteBookingTasklist = (booking_id) => new Promise((resolve, reject) => {
 });
 
 export {
-  viewUserInfo, viewBookingInfo, viewTasklistInfo, deleteBookingTasklist,
+  viewUserInfo, viewBookingInfo, viewTasklistInfo, deleteBookingTasklist, viewBookingTasklist, viewBookingDetails,
 };

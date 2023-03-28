@@ -129,9 +129,9 @@ export default function TasklistForm({ tasklistObj }) {
         </FloatingLabel>
 
         {/* IMAGE INPUT  */}
-        <FloatingLabel controlId="floatingInput8" label="Enter An Image Of Child!" className="mb-3">
+        {/* <FloatingLabel controlId="floatingInput8" label="Enter An Image Of Child!" className="mb-3">
           <Form.Control type="url" placeholder="Enter An Image Of Child." name="image" value={formData.image} onChange={handleChange} required />
-        </FloatingLabel>
+        </FloatingLabel> */}
         {/* SUBMIT BUTTON  */}
         <Button variant="outline-dark" type="submit">
           {tasklistObj.firebaseKey ? 'Update' : 'Create'} Tasklist
