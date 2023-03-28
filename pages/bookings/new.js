@@ -1,5 +1,6 @@
 import React from 'react';
-import BookingForm from '../../components/forms/BookingForm';
+// eslint-disable-next-line import/extensions
+import BookingForm from '../../components/forms/BookingForm.js';
 
 export default function AddBooking() {
   return <BookingForm />;

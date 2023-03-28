@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getSingleTaskList } from '../../../api/tasklistData';
-import TasklistForm from '../../../components/forms/TasklistForm';
+// eslint-disable-next-line import/extensions
+import TasklistForm from '../../../components/forms/TasklistForm.js';
 
 export default function EditTasklist() {
   const [editTasklist, setEditTasklist] = useState({});

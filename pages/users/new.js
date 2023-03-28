@@ -1,5 +1,6 @@
 import React from 'react';
-import UserForm from '../../components/forms/UserForm';
+// eslint-disable-next-line import/extensions
+import UserForm from '../../components/forms/UserForm.js';
 
 export default function newUser() {
   return <UserForm />;
