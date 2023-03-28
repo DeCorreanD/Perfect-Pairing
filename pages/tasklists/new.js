@@ -1,5 +1,6 @@
 import React from 'react';
-import TasklistForm from '../../components/forms/TasklistForm';
+// eslint-disable-next-line import/extensions
+import TasklistForm from '../../components/forms/TasklistForm.js';
 
 export default function AddTasklist() {
   return <TasklistForm />;
