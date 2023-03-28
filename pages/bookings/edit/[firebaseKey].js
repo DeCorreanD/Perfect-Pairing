@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 // eslint-disable-next-line import/extensions
-import BookingForm from '../../../components/forms/BookingForm.js';
+import BookingForm from '../../../components/Forms/BookingForm.js';
 import { getSingleBooking } from '../../../api/bookingData';
 
 export default function EditBooking() {
