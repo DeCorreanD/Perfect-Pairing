@@ -3,8 +3,8 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
-// eslint-disable-next-line import/no-unresolved
-import UserForm from '../components/forms/UserForm.js';
+// eslint-disable-next-line import/no-unresolved, import/extensions
+import UserForm from '../components/Forms/UserForm.js';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
